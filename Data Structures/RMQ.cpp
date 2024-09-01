@@ -15,6 +15,7 @@ struct RMQ {
                 }
         }
         int get(int l, int r) { 
+                assert(l <= r);
                 int len = __lg(r - l + 1); 
                 return min(st[l][len], st[r - (1 << len) + 1][len]); 
         }
