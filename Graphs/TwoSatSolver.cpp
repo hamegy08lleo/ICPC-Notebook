@@ -27,6 +27,11 @@ struct TSS {
 		adj[conj(u)].push_back(v); 
 		adj[conj(v)].push_back(u); 
 	}
+	void edge(int u, bool nu, int v, bool nv) { 
+		if (nu) u = conj(u); 
+		if (nv) v = conj(v); 
+		adj[u].push_back(v); 
+	}
 	int curdfs = 0; 
 	stack<int> st; 
 	int curidx = nvrt; 
@@ -67,4 +72,3 @@ struct TSS {
 		return true; 
 	}
 };
-
