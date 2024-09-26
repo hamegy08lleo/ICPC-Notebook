@@ -15,17 +15,9 @@ struct TSS {
 		del(nvrt + 1), 
 		idx(nvrt + 1) {}
 
-
 	int conj(int u) { 
 		if (u > nvar) return u - nvar; 
 		return u + nvar;
-	}
-
-	void add(int u, bool nu, int v, bool nv) { 
-		if (nu) u = conj(u); 
-		if (nv) v = conj(v); 
-		adj[conj(u)].push_back(v); 
-		adj[conj(v)].push_back(u); 
 	}
 	void edge(int u, bool nu, int v, bool nv) { 
 		if (nu) u = conj(u); 
