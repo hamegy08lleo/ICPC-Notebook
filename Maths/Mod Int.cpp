@@ -5,11 +5,10 @@
  * Usage: mi a = MOD+5; inv(a); // 400000003
  */
 
-template<int MOD, int RT> struct mint {
+template<int MOD> struct mint {
 	static const int mod = MOD;
-	static constexpr mint rt() { return RT; } // primitive root
- 	int v; 
- 	explicit operator int() const { return v; } 
+	int v; 
+	explicit operator int() const { return v; } 
 	mint():v(0) {}
 	mint(int _v):v((int)(_v%MOD)) { v += (v<0)*MOD; }
 	mint& operator+=(mint o) { 
@@ -26,8 +25,11 @@ template<int MOD, int RT> struct mint {
 	friend mint operator+(mint a, mint b) { return a += b; }
 	friend mint operator-(mint a, mint b) { return a -= b; }
 	friend mint operator*(mint a, mint b) { return a *= b; }
+	friend mint operator/(mint a, mint b) { return a *= inv(b); }
+	friend ostream & operator << (ostream & out, mint a) { return (out << a.v); }
 };
 
-int const md = 998244353; 
-using mi = mint<md, 5>;
+int const md = 1e9 + 7; 
+using mi = mint<md>;
+
 
