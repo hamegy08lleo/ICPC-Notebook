@@ -9,7 +9,7 @@ z[0] = n;
         }
         else{
             int k= i - l;
-            if (z[k] < r - i + 1) z[i] = [k];
+            if (z[k] < r - i + 1) z[i] = z[k];
             else{
                 l = i;
                 while (r < n && s[r] == s[r - l]) r++;
