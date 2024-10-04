@@ -19,9 +19,9 @@ template<int MOD> struct mint {
 		return *this; }
 	mint& operator*=(mint o) { 
 		v = (int)((int)v*o.v%MOD); return *this; }
-	friend mint pow(mint a, int p) { assert(p >= 0);
-		return p==0?1:pow(a*a,p/2)*(p&1?a:1); }
-	friend mint inv(mint a) { assert(a.v != 0); return pow(a,MOD-2); }
+	friend mint binpow(mint a, int p) { assert(p >= 0);
+		return p==0?1:binpow(a*a,p/2)*(p&1?a:1); }
+	friend mint inv(mint a) { assert(a.v != 0); return binpow(a,MOD-2); }
 	friend mint operator+(mint a, mint b) { return a += b; }
 	friend mint operator-(mint a, mint b) { return a -= b; }
 	friend mint operator*(mint a, mint b) { return a *= b; }
