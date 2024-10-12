@@ -1,3 +1,4 @@
+template<typename type> 
 struct Matrix {
     vector <vector <type> > data;
 
