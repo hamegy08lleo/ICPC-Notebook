@@ -8,6 +8,9 @@ struct Node {
         Node (Node *lef, Node *rig) { 
                 this->lef = lef; 
                 this->rig = rig; 
+                val = 0; 
+                if (lef) val += lef->val; 
+                if (rig) val += rig->val; 
         }
         Node (Node *p) { 
                 this->lef = p->lef; 
