@@ -49,7 +49,7 @@ struct PST {
         int get(int i, int v) { 
                 return get(i, rt[v], 1, n); 
         }
-        PSTNode *update(int i, int val, Node *p, int l, int r) { 
+        PSTNode *update(int i, int val, PSTNode *p, int l, int r) { 
                 if (l == r) { 
                         return new PSTNode(val); 
                 }
