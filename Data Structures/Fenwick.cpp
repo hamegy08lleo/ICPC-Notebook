@@ -16,13 +16,12 @@ struct fenwick {
 		int sum = 0, pos = 0;
 		for (int i = __lg(n); i >= 0; i--)
 		{
-			if (pos + (1 << i) < n && sum + bit[pos + (1 << i)] < k)
+			if (pos + (1 << i) < n && sum + f[pos + (1 << i)] < k)
 			{
-				sum += bit[pos + (1 << i)];
+				sum += f[pos + (1 << i)];
 				pos += (1 << i);
 			}
 		}
 		return pos + 1;
 	}
 };
-
