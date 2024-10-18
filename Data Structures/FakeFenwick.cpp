@@ -3,13 +3,11 @@ struct FakeFenwick {
         int n;
         FakeFenwick() {}
         FakeFenwick(int n): n(n), val(n + 1, vector<int>(1, 0)), fw(n + 1) {} 
-        void fakeU(int x, int y, int v) { 
+        bool iscc = 0; 
+        void fakeU(int x, int y) { 
+                iscc = 0; 
                 for (; x <= n; x += x & -x) val[x].push_back(y); 
         }
-        void fakeG(int x, int y) { 
-                for (; x; x -= x & -x) val[x].push_back(y); 
-        }
-        bool iscc = 0; 
         void cc() { 
                 if (iscc) return; 
                 for (int x = 1; x <= n; x++) { 
