@@ -2,7 +2,7 @@ struct FakeFenwick {
         vector<vector<int>> fw, val; 
         int n;
         FakeFenwick() {}
-        FakeFenwick(int n): n(n), val(n + 1, vector<int>(1, 0)), fw(n + 1) {} 
+        FakeFenwick(int n): n(n), val(n + 1, vector<int>()), fw(n + 1) {} 
         bool iscc = 0; 
         void fakeU(int x, int y) { 
                 iscc = 0; 
@@ -13,7 +13,7 @@ struct FakeFenwick {
                 for (int x = 1; x <= n; x++) { 
                         sort(all(val[x])); 
                         val[x].erase(unique(all(val[x])), val[x].end()); 
-                        fw[x].resize(val[x].size()); 
+                        fw[x].resize(val[x].size() + 1); 
                 }
                 iscc = 1; 
         }
