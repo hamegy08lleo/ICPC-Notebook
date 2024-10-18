@@ -20,7 +20,7 @@ struct FakeFenwick {
         void update(int x, int y, int v) { 
                 assert(iscc); 
                 for (; x <= n; x += x & -x) { 
-                        int yy = lower_bound(all(val[x]), y) - val[x].begin() + 1; 
+                        int yy = upper_bound(all(val[x]), y) - val[x].begin(); 
                         for (; yy <= val[x].size(); yy += yy & -yy) { 
                                 fw[x][yy] += v; 
                         }
