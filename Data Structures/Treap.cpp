@@ -52,3 +52,14 @@ void split(Treap *p, Treap *&lef, Treap *&rig, int k) {
 	}
 	pull(p); 
 }
+
+int index(Treap *p, Treap *pre = nullptr) { 
+	if (!p) return 0LL; 
+	if (pre && p->lef == pre) { 
+		return index(p->par, p); 
+	}
+	else { 
+		return index(p->par, p) + getsz(p->lef) + 1; 
+	}
+}
+ 

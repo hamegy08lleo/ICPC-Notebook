@@ -12,8 +12,16 @@ struct fenwick {
                 for (; i >= 1; i -= i & -i) ans += f[i]; 
                 return ans; 
         }
-        int range(int u, int v) { 
-                return get(v) - get(u-1); 
-        }
+	int find(int k) {
+		int sum = 0, pos = 0;
+		for (int i = __lg(n); i >= 0; i--)
+		{
+			if (pos + (1 << i) < n && sum + f[pos + (1 << i)] < k)
+			{
+				sum += f[pos + (1 << i)];
+				pos += (1 << i);
+			}
+		}
+		return pos + 1;
+	}
 };
-
