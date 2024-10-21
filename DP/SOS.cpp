@@ -1,4 +1,4 @@
-// sum over subsets
+// sum over subsets O(N * 2^N)
 for (int i = 0; i < (1LL << n); i++) { 
         sos[i] = cnt[i]; 
 }
@@ -9,7 +9,7 @@ for (int i = 0; i < n; i++) {
                 }
         }
 }
-// list all over subsets
+// list all over subsets O(3^N)
 for (int i = 0; i < (1 << n); i++) {
 	for (int j = (i - 1) & i; j >= 0; j = (j - 1) & i) { sos[i] += a[j]; }
 
