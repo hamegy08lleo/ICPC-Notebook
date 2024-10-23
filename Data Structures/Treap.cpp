@@ -1,6 +1,6 @@
-
 struct Treap { 
 	Treap *lef, *rig; 
+	Treap *par; 
 	int num; 
 	int prio; 
 	int sz; 
@@ -8,17 +8,21 @@ struct Treap {
 	num(num), 
 	prio(rnd()),
 	sz(1),
+	par(nullptr), 
 	lef(nullptr),
 	rig(nullptr) {}
 };
  
-int sz(Treap *p) { 
+int getsz(Treap *p) { 
 	return (p ? p->sz : 0); 
 }
  
 void pull(Treap *p) { 
 	if (!p) return; 
-	p->sz = sz(p->lef) + 1 + sz(p->rig); 
+	p->sz = getsz(p->lef) + 1 + getsz(p->rig); 
+	p->par = nullptr; 
+	if (p->lef) p->lef->par = p; 
+	if (p->rig) p->rig->par = p; 
 }
  
 void merge(Treap *&p, Treap *lef, Treap *rig) { 
@@ -42,8 +46,8 @@ void split(Treap *p, Treap *&lef, Treap *&rig, int k) {
 		lef = rig = nullptr; 
 		return; 
 	}
-	if (sz(p->lef) < k) { 
-		split(p->rig, p->rig, rig, k - 1 - sz(p->lef)); 
+	if (getsz(p->lef) < k) { 
+		split(p->rig, p->rig, rig, k - 1 - getsz(p->lef)); 
 		lef = p; 
 	}
 	else { 
@@ -62,4 +66,3 @@ int index(Treap *p, Treap *pre = nullptr) {
 		return index(p->par, p) + getsz(p->lef) + 1; 
 	}
 }
- 
