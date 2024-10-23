@@ -1,3 +1,6 @@
+const int mod1 = 1035972859;
+const int mod2 = 1704760909;
+const int base = ;
 struct hashing{
         int mod, n;
         vector<int> h, k, power;
