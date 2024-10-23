@@ -1,13 +1,8 @@
 struct Info { 
 	int val; 
-	bool empty = 1; 
-	Info() { 
-		val = 0; 
-		empty = 1; 
-	}
-	Info(int val): val(val) { 
-		empty = 0; 
-	}
+	bool empty; 
+	Info(): val(0), empty(1) { }
+	Info(int val): val(val), empty(0) { }
 	friend Info operator + (Info lef, Info rig) { 
 		if (lef.empty || rig.empty) { 
 			return lef.empty ? rig : lef; 
@@ -50,4 +45,3 @@ struct Segtree {
 #undef rc 
 #undef mi 
 }; 
-
