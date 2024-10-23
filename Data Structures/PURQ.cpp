@@ -2,6 +2,7 @@ struct Info {
 	int val; 
 	bool empty = 1; 
 	Info() { 
+		val = 0; 
 		empty = 1; 
 	}
 	Info(int val): val(val) { 
@@ -13,7 +14,7 @@ struct Info {
 		}
 		Info res; 
 		res.empty = 0;
-		res.val = max(lef.val, rig.val); 
+		res.val = lef.val + rig.val; 
 		return res; 
 	}
 }; 
@@ -25,11 +26,11 @@ struct Segtree {
 #define rc id << 1 | 1 
 #define mi ((l + r) >> 1) 
 	Segtree() {}
-	Segtree(int n): n(n), st(n << 2) {
+	Segtree(int n): n(n), st(n << 2, Info(0)) {
 	}
 	void update(int i, int x, int id, int l, int r) { 
 		if (l == r) { 
-			st[id] = Info(x); 
+			st[id].val += x; 
 			return; 
 		}
 		if (i <= mi) update(i, x, lc, l, mi); 
@@ -45,4 +46,8 @@ struct Segtree {
 		}
 		return get(u, v, lc, l, mi) + get(u, v, rc, mi+1, r); 
 	}
+#undef lc 
+#undef rc 
+#undef mi 
 }; 
+
