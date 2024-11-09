@@ -25,20 +25,21 @@ bool check_composite(u64 n, u64 a, u64 d, int s) {
     return true;
 };
 
-bool MillerRabin(u64 n, int iter=5) { // returns true if n is probably prime, else returns false.
-    if (n < 4)
-        return n == 2 || n == 3;
+bool MillerRabin(u64 n) { // returns true if n is prime, else returns false.
+    if (n < 2)
+        return false;
 
-    int s = 0;
+    int r = 0;
     u64 d = n - 1;
     while ((d & 1) == 0) {
         d >>= 1;
-        s++;
+        r++;
     }
 
-    for (int i = 0; i < iter; i++) {
-        int a = 2 + rand() % (n - 3);
-        if (check_composite(n, a, d, s))
+    for (int a : {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37}) {
+        if (n == a)
+            return true;
+        if (check_composite(n, a, d, r))
             return false;
     }
     return true;
