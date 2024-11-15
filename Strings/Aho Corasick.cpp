@@ -38,3 +38,10 @@ struct aho_corasick{
         return a;
     }
 };
+
+//how to get all substring from 0 to i and have suffix i
+for (int i=0, p=0; i<t.size(); i++){
+            p = ac.g[p].nxt[t[i]];
+            for (int j: ac.get_sindex(p))
+                result[j].push_back(i - s_size[j] + 1);
+        }
