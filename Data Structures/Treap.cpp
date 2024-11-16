@@ -16,6 +16,10 @@ struct Treap {
 int getsz(Treap *p) { 
 	return (p ? p->sz : 0); 
 }
+
+int getnum(Treap *p) { 
+	return (p ? p->num : 0); 
+}
  
 void pull(Treap *p) { 
 	if (!p) return; 
@@ -41,17 +45,33 @@ void merge(Treap *&p, Treap *lef, Treap *rig) {
 	pull(p); 
 }
  
-void split(Treap *p, Treap *&lef, Treap *&rig, int k) { 
-	if (!p) { 
+void splitbynum(Treap *p, Treap *&lef, Treap *&rig, int k) { 
+        if (p == nullptr) {
+                lef = rig = nullptr; 
+                return; 
+        }
+        if (getnum(p) <= k) { 
+                splitbynum(p->rig, p->rig, rig, k); 
+                lef = p; 
+        }
+        else { 
+                splitbynum(p->lef, lef, p->lef, k); 
+                rig = p; 
+        }
+        pull(p); 
+}
+
+void splitbysz(Treap *p, Treap *&lef, Treap *&rig, int k) { 
+	if (p == nullptr) { 
 		lef = rig = nullptr; 
 		return; 
 	}
 	if (getsz(p->lef) < k) { 
-		split(p->rig, p->rig, rig, k - 1 - getsz(p->lef)); 
+		splitbysz(p->rig, p->rig, rig, k - getsz(p->lef) - 1); 
 		lef = p; 
 	}
 	else { 
-		split(p->lef, lef, p->lef, k); 
+		splitbysz(p->lef, lef, p->lef, k); 
 		rig = p; 
 	}
 	pull(p); 

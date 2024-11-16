@@ -1,13 +1,3 @@
-/**
- * Author: Simon Lindholm
- * Date: 2017-04-20
- * License: CC0
- * Source: own work
- * Description: Container where you can add lines of the form kx+m, and query maximum values at points x.
- *  Useful for dynamic programming (``convex hull trick'').
- * Time: O(\log N)
- * Status: stress-tested
- */
 #pragma once
 
 struct Line {
@@ -27,6 +17,7 @@ struct LineContainer : multiset<Line, less<>> {
 		else x->p = div(y->m - x->m, x->k - y->k);
 		return x->p >= y->p;
 	}
+	// y = kx + m
 	void add(ll k, ll m) {
 		auto z = insert({k, m, 0}), y = z++, x = y;
 		while (isect(y, z)) z = erase(z);
