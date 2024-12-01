@@ -8,7 +8,7 @@ vector<int> z_func(string s){
             l = r = i;
             while (r < n && s[r] == s[r-l]) ++r;
             z[i] = r - l;
-            r-=1;
+            r--;
         }
         else{
             int k= i - l;
