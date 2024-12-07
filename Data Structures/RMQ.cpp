@@ -1,13 +1,13 @@
 // 0-indexed
 template<typename T>
 struct RMQ { 
-        int n, lg;
+        int n;
         vector<T> v; 
         vector<vector<T>> st; 
         function<T(T, T)> f; 
         RMQ(vector<T> & v, function<T(T, T)> f = [](T i, T j) { return min(i, j); }): v(v), n(v.size()), f(f) { 
-                lg = __lg(n) + 1; 
-                st.resize(n, vector<int> (lg + 1)); 
+                int lg = _lg(n) + 1; 
+                st.resize(n, vector<T> (lg + 1)); 
                 for (int i = 0; i < n; i++) { 
                         st[i][0] = v[i]; 
                 }
